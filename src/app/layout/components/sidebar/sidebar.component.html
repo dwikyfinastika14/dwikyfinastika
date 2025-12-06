@@ -1,0 +1,620 @@
+<div [ngClass]="classManager.getClass()" class="parallaxie">
+    <router-outlet />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="personal-contact-box" data-aos="fade-right" data-aos-duration="1000">
+                    <div id="list-example" class="list-group">
+                        <a class="list-group-item list-group-item-action"
+                            [ngClass]="{ active: currentSection === 'list-item-1' }" [ngxScrollTo]="'#list-item-1'"
+                            href="javascript:void(0);" (click)="setActiveLink('list-item-1')">
+                            <img src="assets/img/icons/home1.svg" alt="" />
+                            <span>Home</span>
+                        </a>
+                        <a class="list-group-item list-group-item-action" [ngxScrollTo]="'#list-item-2'"
+                            [ngClass]="{ active: currentSection === 'list-item-2' }" href="javascript:void(0);"
+                            (click)="setActiveLink('list-item-2')">
+                            <img src="assets/img/icons/home2.svg" alt="" />
+                            <span>About Us</span>
+                        </a>
+                        <a class="list-group-item list-group-item-action"
+                            [ngClass]="{ active: currentSection === 'list-item-3' }" [ngxScrollTo]="'#list-item-3'"
+                            href="javascript:void(0);" (click)="setActiveLink('list-item-3')">
+                            <img src="assets/img/icons/home3.svg" alt="" />
+                            <span>Our Service</span>
+                        </a>
+                        <a class="list-group-item list-group-item-action"
+                            [ngClass]="{ active: currentSection === 'list-item-4' }" [ngxScrollTo]="'#list-item-4'"
+                            href="javascript:void(0);" (click)="setActiveLink('list-item-4')">
+                            <img src="assets/img/icons/home4.svg" alt="" />
+                            <span>My Skill</span>
+                        </a>
+                        <a class="list-group-item list-group-item-action"
+                            [ngClass]="{ active: currentSection === 'list-item-5' }" [ngxScrollTo]="'#list-item-5'"
+                            href="javascript:void(0);" (click)="setActiveLink('list-item-5')">
+                            <img src="assets/img/icons/home5.svg" alt="" />
+                            <span>Portfolio</span>
+                        </a>
+                        <a class="list-group-item list-group-item-action m-0"
+                            [ngClass]="{ active: currentSection === 'list-item-8' }" [ngxScrollTo]="'#list-item-8'"
+                            href="javascript:void(0);" (click)="setActiveLink('list-item-8')">
+                            <img src="assets/img/icons/home7.svg" alt="" />
+                            <span>Contact Us</span>
+                        </a>
+                    </div>
+                    <div class="img1 image-anime reveal" appGsapReveal>
+                        <img src="assets/img/all-images/hero/porto.jpeg" alt="">
+                    </div>
+                    <div class="space18"></div>
+                    <h3>Dwiky Finastika</h3>
+                    <div class="space16"></div>
+                    <p>Hi, I’m Alex, a dedicated UI/UX Designer with 10 years of experience creating meaningful digital
+                        experiences.</p>
+                    <div class="space32"></div>
+                    <ul>
+                        <li><a href="javascript:void(0);"><img src="assets/img/icons/s-icon2.svg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="assets/img/icons/s-icon3.svg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="assets/img/icons/s-icon4.svg" alt=""></a></li>
+                    </ul>
+                    <div class="space44"></div>
+                    <div class="btn-area1 text-center">
+                        <a href="assets/img/all-images/hero/cv.pdf" download class="vl-btn1">Download Now <img
+                                src="assets/img/icons/download1.svg" alt=""></a>
+                    </div>
+                    <div class="space32"></div>
+                    <p>© {{year}} OVRO. All Rights Reserved.</p>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true"
+                    class="scrollspy-example" tabindex="0">
+                    <!--===== HERO AREA STARTS =======-->
+                    <div id="list-item-1">
+                        <div class="hero-heading-area heading1">
+                            <h5 data-aos="fade-left" data-aos-duration="800">Hi, I’m Dwiky Finastika, a UI/UX Designer &
+                                Web Developer creating modern, responsive, and user-friendly websites.
+                            </h5>
+                            <div class="space24"></div>
+                            <h1 data-aos="fade-left" data-aos-duration="900">Building Modern</h1>
+                            <div class="space24"></div>
+                            <h1 class="head" data-aos="fade-left" data-aos-duration="1000">
+                                Web <span>Applications</span>
+                            </h1>
+                            <div class="space24"></div>
+                            <p data-aos="fade-left" data-aos-duration="1100">
+                                Turning ideas into fast, responsive, and reliable web solutions through clean and
+                                scalable code.
+                            </p>
+                            <div class="space32"></div>
+                            <div class="main-btn-area" data-aos="fade-up" data-aos-duration="1200">
+                                <a href="javascript:void(0);">Lets Work Together <span><i
+                                            class="fa-solid fa-arrow-right"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--===== HERO AREA ENDS =======-->
+                    <div class="space50"></div>
+                    <div id="list-item-2">
+                        <!--===== ABOUT AREA STARTS =======-->
+                        <div class="about-section-area">
+                            <div class="heading1">
+                                <h5 data-aos="fade-left" data-aos-duration="800">
+                                    <img src="assets/img/icons/sublogo1.svg" alt=""> About Me
+                                </h5>
+                                <div class="space24"></div>
+                                <h1 data-aos="fade-left" data-aos-duration="1000">Building Modern</h1>
+                                <div class="space24"></div>
+                                <h1 class="head" data-aos="fade-left" data-aos-duration="1100">
+                                    Web <span>Experiences</span>
+                                </h1>
+                            </div>
+                            <div class="space60"></div>
+                            <div class="about-boxarea">
+                                <div class="row">
+                                    <div class="col-lg-12" data-aos="fade-left" data-aos-duration="1200">
+                                        <div class="about-main-boxes">
+                                            <h4>Dwiky Finastika</h4>
+                                            <div class="space24"></div>
+                                            <p>
+                                                Hi, I’m Dwiky Finastika, a Web Developer focused on building modern,
+                                                responsive, and user-friendly
+                                                websites. I specialize in turning ideas into real digital solutions
+                                                using clean, scalable, and
+                                                efficient code. With a strong passion for web technology, I strive to
+                                                deliver websites that are not
+                                                only visually appealing but also fast, secure, and reliable.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-duration="900">
+                                        <div class="about-boxes2">
+                                            <img src="assets/img/icons/home2.svg" alt="">
+                                            <div class="content-area">
+                                                <h4>UI/UX Design</h4>
+                                                <div class="space16"></div>
+                                                <p>Designing intuitive, user-friendly, and visually engaging interfaces
+                                                    that enhance user experience.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-duration="1100">
+                                        <div class="about-boxes2">
+                                            <img src="assets/img/icons/home4.svg" alt="">
+                                            <div class="content-area">
+                                                <h4>Web Development</h4>
+                                                <div class="space16"></div>
+                                                <p>Building modern, responsive, fast, and secure websites tailored to
+                                                    your business needs.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="soace20"></div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <h3>Work Experience</h3>
+                                        <div class="space32"></div>
+
+                                        <div class="about-others-box" data-aos="zoom-in" data-aos-duration="900">
+                                            <a href="javascript:void(0);">April 2022 – Present</a>
+                                            <div class="space16"></div>
+                                            <h4>
+                                                <a href="javascript:void(0);">Professional Freelancer – Web & Web App
+                                                    Developer</a>
+                                            </h4>
+                                            <div class="space16"></div>
+                                            <p>Freelance</p>
+                                            <div class="space32"></div>
+                                            <a href="javascript:void(0);">October 2024 – Present</a>
+                                            <div class="space16"></div>
+                                            <h4>
+                                                <a href="javascript:void(0);">Web & Web App Developer</a>
+                                            </h4>
+                                            <div class="space16"></div>
+                                            <p>PT Utama Rackindo Semesta</p>
+                                            <div class="space32"></div>
+                                            <a href="javascript:void(0);">January 2024 – May 2024</a>
+                                            <div class="space16"></div>
+                                            <h4>
+                                                <a href="javascript:void(0);">Intern Web Developer</a>
+                                            </h4>
+                                            <div class="space16"></div>
+                                            <p>PT. Radeya Sentana Karya</p>
+                                        </div>
+                                        <div class="about-others-box text-center" data-aos="zoom-in"
+                                            data-aos-duration="1000">
+                                            <h4>Stay With Me</h4>
+                                            <div class="space18"></div>
+                                            <ul>
+                                                <li><a href="#"><img src="assets/img/icons/s-icon1.svg" alt=""></a></li>
+                                                <li><a href="#"><img src="assets/img/icons/s-icon2.svg" alt=""></a></li>
+                                                <li><a href="#"><img src="assets/img/icons/s-icon3.svg" alt=""></a></li>
+                                                <li><a href="#"><img src="assets/img/icons/s-icon4.svg" alt=""></a></li>
+                                                <li><a href="#" class="m-0"><img src="assets/img/icons/s-icon5.svg"
+                                                            alt=""></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <h3>Education</h3>
+                                        <div class="space32"></div>
+                                        <div class="about-others-box" data-aos="zoom-in" data-aos-duration="1100">
+                                            <a href="javascript:void(0);">2010 - 2013</a>
+                                            <div class="space16"></div>
+                                            <h4><a href="javascript:void(0);">Bachelor's Degree in Graphic Design</a>
+                                            </h4>
+                                            <div class="space16"></div>
+                                            <p>University of California</p>
+                                            <div class="space32"></div>
+                                            <a href="javascript:void(0);">2013 - 2015</a>
+                                            <div class="space16"></div>
+                                            <h4><a href="javascript:void(0);">Master's Degree in User Experience
+                                                    Design</a></h4>
+                                            <div class="space16"></div>
+                                            <p>Massachusetts Institute of Technology (MIT)</p>
+                                        </div>
+                                    </div>
+                                    <div class="space20"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--===== ABOUT AREA ENDS =======-->
+                    </div>
+
+                    <div id="list-item-3">
+                        <!--===== SERVICE AREA STARTS =======-->
+                        <div class="service-section-area">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="service-header heading1">
+                                            <h5 data-aos="fade-left" data-aos-duration="800"><img
+                                                    src="assets/img/icons/sublogo1.svg" alt="">My Services</h5>
+                                            <div class="space24"></div>
+                                            <h2 data-aos="fade-left" data-aos-duration="1000">Elevating Brands</h2>
+                                            <div class="space24"></div>
+                                            <h2 class="head" data-aos="fade-left" data-aos-duration="1100">Intuitive
+                                                <span>Design</span>
+                                            </h2>
+                                            <div class="space50"></div>
+                                            <div class="div" data-aos="fade-left" data-aos-duration="900">
+                                                <div class="service-main-boxes">
+                                                    <h4>UI/UX Design</h4>
+                                                    <div class="space24"></div>
+                                                    <p>Designing intuitive, user-focused interfaces that prioritize
+                                                        functionality and seamless navigation.</p>
+                                                </div>
+                                            </div>
+                                            <div class="space30"></div>
+                                            <div class="div" data-aos="fade-left" data-aos-duration="1000">
+                                                <div class="service-main-boxes">
+                                                    <h4>User Research & Prototyping</h4>
+                                                    <div class="space24"></div>
+                                                    <p>Conducting in-depth user research and creating interactive
+                                                        prototypes to validate ideas and refine designs.</p>
+                                                </div>
+                                            </div>
+                                            <div class="space30"></div>
+                                            <div class="div" data-aos="fade-left" data-aos-duration="1100">
+                                                <div class="service-main-boxes">
+                                                    <h4>Responsive Web Design</h4>
+                                                    <div class="space24"></div>
+                                                    <p>Crafting designs that adapt seamlessly across all devices,
+                                                        ensuring a consistent user experience.</p>
+                                                </div>
+                                            </div>
+                                            <div class="space30"></div>
+                                            <div class="div" data-aos="fade-left" data-aos-duration="1200">
+                                                <div class="service-main-boxes">
+                                                    <h4>Wireframing & Visual Design</h4>
+                                                    <div class="space24"></div>
+                                                    <p>Creating detailed wireframes and visually stunning designs to
+                                                        bring ideas into focus.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--===== SERVICE AREA ENDS =======-->
+                    </div>
+                    <div class="space50"></div>
+                    <div id="list-item-4">
+                        <!--===== SKILL AREA STARTS =======-->
+                        <div class="skill-section-area">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-gl-12">
+                                        <div class="skill-header heading1">
+                                            <h5 data-aos="fade-left" data-aos-duration="800"><img
+                                                    src="assets/img/icons/sublogo1.svg" alt="">My Skill</h5>
+                                            <div class="space24"></div>
+                                            <h2 data-aos="fade-left" data-aos-duration="1000">The Tools Behind </h2>
+                                            <div class="space24"></div>
+                                            <h2 class="head" data-aos="fade-left" data-aos-duration="1100">Exceptional
+                                                <span>Design</span>
+                                            </h2>
+                                        </div>
+                                        <div class="space80"></div>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="900">
+                                                <div class="skill-boxarea">
+                                                    <div class="icons">
+                                                        <img src="assets/img/icons/skill1.svg" alt="">
+                                                    </div>
+                                                    <div class="space24"></div>
+                                                    <h3><span appCounter [countTo]="96" class="counter"></span>%</h3>
+                                                    <div class="space16"></div>
+                                                    <p>Figma</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1000">
+                                                <div class="skill-boxarea">
+                                                    <div class="icons">
+                                                        <img src="assets/img/icons/skill2.svg" alt="">
+                                                    </div>
+                                                    <div class="space24"></div>
+                                                    <h3><span appCounter [countTo]="87" class="counter">87</span>%</h3>
+                                                    <div class="space16"></div>
+                                                    <p>Photoshop</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1100">
+                                                <div class="skill-boxarea">
+                                                    <div class="icons">
+                                                        <img src="assets/img/icons/skill3.svg" alt="">
+                                                    </div>
+                                                    <div class="space24"></div>
+                                                    <h3><span appCounter [countTo]="90" class="counter">90</span>%</h3>
+                                                    <div class="space16"></div>
+                                                    <p>Illustrator</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1200">
+                                                <div class="skill-boxarea">
+                                                    <div class="icons">
+                                                        <img src="assets/img/icons/skill4.svg" alt="">
+                                                    </div>
+                                                    <div class="space24"></div>
+                                                    <h3><span appCounter [countTo]="89" class="counter">89</span>%</h3>
+                                                    <div class="space16"></div>
+                                                    <p>Sketch</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1000">
+                                                <div class="skill-boxarea">
+                                                    <div class="icons">
+                                                        <img src="assets/img/icons/skill5.svg" alt="">
+                                                    </div>
+                                                    <div class="space24"></div>
+                                                    <h3><span class="counter" appCounter [countTo]="92">92</span>%</h3>
+                                                    <div class="space16"></div>
+                                                    <p>Adobe XD</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6" data-aos="zoom-out"
+                                                data-aos-duration="11000">
+                                                <div class="skill-boxarea">
+                                                    <div class="icons">
+                                                        <img src="assets/img/icons/skill6.svg" alt="" class="Wordpress">
+                                                    </div>
+                                                    <div class="space24"></div>
+                                                    <h3><span class="counter" appCounter [countTo]="85">85</span>%</h3>
+                                                    <div class="space16"></div>
+                                                    <p>Wordpress</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--===== SKILL AREA ENDS =======-->
+                    </div>
+                    <div class="space30"></div>
+                    <div id="list-item-5">
+                        <!--===== PORTFOLIO AREA STARTS =======-->
+                        <div class="portfolio-section-area">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="portfolio-header heading1">
+                                            <h5 data-aos="fade-left" data-aos-duration="800"><img
+                                                    src="assets/img/icons/sublogo1.svg" alt="">My Portfolio</h5>
+                                            <div class="space24"></div>
+                                            <h2 data-aos="fade-left" data-aos-duration="1000">Innovation Designs</h2>
+                                            <div class="space24"></div>
+                                            <h2 class="head" data-aos="fade-left" data-aos-duration="1100">Real
+                                                <span>Results</span>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="space50"></div>
+                                    <div class="col-lg-12" data-aos="fade-left" data-aos-duration="1000">
+                                        <div class="portfolio-boxarea click-here" (click)="openModel()">
+                                            <div class="img1">
+                                                <a href="javascript:void(0)">
+                                                    <img src="assets/img/all-images/portfolio/portfolio-img1.png"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="space24"></div>
+                                            <a href="javascript:void(0)">Reelup - E commercer Video Platform</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6" data-aos="fade-left" data-aos-duration="1100">
+                                        <div class="portfolio-boxarea2 click-here" (click)="openModel()">
+                                            <div class="img1">
+                                                <a href="javascript:void(0)">
+                                                    <img src="assets/img/all-images/portfolio/portfolio-img3.png"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="space24"></div>
+                                            <a href="javascript:void(0)">Academy - Sales Career</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6" data-aos="fade-left" data-aos-duration="1200">
+                                        <div class="portfolio-boxarea2 click-here" (click)="openModel()">
+                                            <div class="img1">
+                                                <a href="javascript:void(0)">
+                                                    <img src="assets/img/all-images/portfolio/portfolio-img4.png"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="space24"></div>
+                                            <a href="javascript:void(0)">Leadlogic- Dashboard Design</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12" data-aos="fade-left" data-aos-duration="1100">
+                                        <div class="portfolio-boxarea click-here" (click)="openModel()">
+                                            <div class="img1">
+                                                <a href="javascript:void(0)">
+                                                    <img src="assets/img/all-images/portfolio/portfolio-img2.png"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="space24"></div>
+                                            <a href="javascript:void(0)">Reelup - E commercer Video Platform</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--===== PORTFOLIO AREA ENDS =======-->
+                    </div>
+                    <div class="space30"></div>
+                    <div class="space60"></div>
+                    <div id="list-item-8">
+                        <!--===== CONTACT AREA STARTS =======-->
+                        <div class="contact-section-area">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="contact-heading heading1">
+                                            <h5 data-aos="fade-left" data-aos-duration="900"><img
+                                                    src="assets/img/icons/sublogo1.svg" alt="">Contact Me</h5>
+                                            <div class="space24"></div>
+                                            <h2 data-aos="fade-left" data-aos-duration="1000">Have Any Project in</h2>
+                                            <div class="space24"></div>
+                                            <h2 class="head" data-aos="fade-left" data-aos-duration="1100">Mind,
+                                                <span>Lets Talk</span>
+                                            </h2>
+                                        </div>
+                                        <div class="space50"></div>
+                                        <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">
+                                            <h3>Let’s Work Together!</h3>
+                                            <div class="space12"></div>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="input-area">
+                                                        <input type="text" placeholder="Full Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="input-area">
+                                                        <input type="email" placeholder="Email Address">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="input-area">
+                                                        <input type="number" placeholder="Phone Number">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="input-area">
+                                                        <input type="text" placeholder="Subject">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12">
+                                                    <div class="input-area">
+                                                        <input type="text" placeholder="Your Budget (optional)">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12">
+                                                    <div class="input-area">
+                                                        <textarea placeholder="Message"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12">
+                                                    <div class="input-area">
+                                                        <button type="submit" class="vl-btn1">Send <img
+                                                                src="assets/img/icons/mail1.svg" alt=""></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="space50"></div>
+                                        <div class="footer-area">
+                                            <div class="btn-area1">
+                                                <a href="index.html"><img src="assets/img/logo/logo1.png" alt=""></a>
+                                            </div>
+                                            <p>© {{year}} OVRO. All Rights Reserved.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--===== CONTACT AREA ENDS =======-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="custom-model-main" [class.model-open]="isModelOpen">
+    <div class="custom-model-inner">
+        <div class="close-btn" (click)="closeModel()">×</div>
+        <div class="custom-model-wrap">
+            <div class="pop-up-content-wrap">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="opend-section">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <div class="boxes-area">
+                                        <div class="img1">
+                                            <img src="assets/img/all-images/portfolio/portfolio-img1.png" alt="">
+                                        </div>
+                                        <div class="content">
+                                            <div class="tags-area">
+                                                <a href="javascript:void(0);">23 April 2024</a>
+                                                <a href="javascript:void(0);">Alex Ross</a>
+                                            </div>
+                                            <a href="javascript:void(0);">Crafting Compelling Designs and Strategic
+                                                Marketing: A Creative
+                                                Journey Unveiled</a>
+                                            <p>In today's fast-paced digital landscape, the intersection of design and
+                                                marketing has become increasingly vital for businesses aiming to best
+                                                captivate audiences and drive success. Crafting compelling designs.</p>
+                                            <p class="pera">Psychology and market trends. Through strategic marketing,
+                                                these an designs are brought to life, leveraging data-driven insights
+                                                innovative.</p>
+                                            <div class="btn-area1">
+                                                <a href="contact.html" class="vl-btn1">Get in touch now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <div class="contact-from-area" data-aos="flip-right" data-aos-duration="1000">
+                                        <h3>Leave A Message</h3>
+                                        <form action="https://api.web3forms.com/submit" method="POST">
+                                            <input type="hidden" name="access_key"
+                                                value="0cd32fff-eda2-4da3-be43-37d47fbb396b">
+
+                                            <div class="input">
+                                                <input type="text" placeholder="Full Name">
+                                            </div>
+                                            <div class="input">
+                                                <input type="number" placeholder="Phone Number" required>
+                                            </div>
+                                            <div class="input">
+                                                <input type="email" placeholder="Email Address" required>
+                                            </div>
+                                            <div class="input">
+                                                <select name="country" id="country" class="country-area nice-select6">
+                                                    <option value="1" data-display="Service Type">Service Type</option>
+                                                    <option value="">Belgium</option>
+                                                    <option value="">Brezil</option>
+                                                    <option value="">Argentina</option>
+                                                    <option value="">Bangladesh</option>
+                                                    <option value="">Germany</option>
+                                                </select>
+                                            </div>
+                                            <div class="input">
+                                                <textarea placeholder="Message" required></textarea>
+                                            </div>
+                                            <div class="space32"></div>
+                                            <div class="btn-area text-end" data-aos="fade-up" data-aos-duration="1200">
+                                                <button type="submit" class="vl-btn1">submit now</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-overlay"></div>
+</div>
