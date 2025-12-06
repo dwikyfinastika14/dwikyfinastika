@@ -1,15 +1,8 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "dist/dwikyfinastika/browser/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/dist/dwikyfinastika/browser/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
