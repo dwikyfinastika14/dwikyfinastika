@@ -4,6 +4,15 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['better-sqlite3'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/index',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
