@@ -22,6 +22,8 @@ export default function AdminProfilePage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState('');
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
 
   useEffect(() => {
     fetch('/api/profile')
@@ -32,6 +34,36 @@ export default function AdminProfilePage() {
   function update(key, value) {
     setForm((current) => ({ ...current, [key]: value }));
     setSaved(false);
+  }
+
+  async function handleImageUpload(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setUploadError('');
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (res.ok && data.url) {
+        update('image_url', data.url);
+        setUploadError('');
+      } else {
+        setUploadError(data.error || 'Gagal upload gambar');
+      }
+    } catch (err) {
+      setUploadError('Error: ' + err.message);
+    } finally {
+      setUploading(false);
+    }
   }
 
   async function handleSubmit(e) {
@@ -81,9 +113,32 @@ export default function AdminProfilePage() {
             <textarea value={form.bio || ''} onChange={(e) => update('bio', e.target.value)} rows={4} />
           </label>
           <label>
-            URL Gambar Profile
-            <input value={form.image_url || ''} onChange={(e) => update('image_url', e.target.value)} placeholder="https://example.com/profile.jpg atau /assets/img/profile.jpg" />
+            Upload Gambar Profile
+            <input 
+              type="file" 
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              onChange={handleImageUpload}
+              disabled={uploading}
+            />
+            {uploading && <p style={{ fontSize: '0.875rem', color: '#666' }}>Uploading...</p>}
+            {uploadError && <p style={{ fontSize: '0.875rem', color: '#dc2626' }}>{uploadError}</p>}
           </label>
+          {form.image_url && (
+            <div style={{ marginBottom: '1rem' }}>
+              <p style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem' }}>Preview Gambar:</p>
+              <img 
+                src={form.image_url} 
+                alt="Profile preview" 
+                style={{ 
+                  width: '100px', 
+                  height: '100px', 
+                  borderRadius: '50%', 
+                  objectFit: 'cover',
+                  border: '2px solid #ccc'
+                }} 
+              />
+            </div>
+          )}
           <label>
             Skill (pisahkan dengan koma)
             <input value={form.skills || ''} onChange={(e) => update('skills', e.target.value)} />
