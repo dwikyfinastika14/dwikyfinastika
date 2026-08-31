@@ -20,7 +20,11 @@ export default function About({ profile }) {
       <div className="about-content">
         <div className="about-intro">
           <div className="about-avatar" aria-hidden="true">
-            {initials}
+            {profile.image_url ? (
+              <img src={profile.image_url} alt={profile.name || 'Profile'} className="about-avatar-image" />
+            ) : (
+              initials
+            )}
           </div>
           <p className="about-text">{profile.bio}</p>
           {profile.email && (

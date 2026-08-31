@@ -1011,6 +1011,14 @@ body {
   margin-bottom: 1rem;
   background: var(--public-accent);
   color: var(--public-ink);
+  overflow: hidden;
+}
+
+.about-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .about-text {
