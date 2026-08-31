@@ -1,14 +1,9 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import { createExperience, listExperiences } from '@/lib/db';
 import { isAuthenticated } from '@/lib/auth';
 
 export async function GET() {
-  const rows = db.prepare('SELECT * FROM experiences ORDER BY sort_order ASC, id ASC').all();
-  const experiences = rows.map((experience) => ({
-    ...experience,
-    tags: JSON.parse(experience.tags || '[]'),
-  }));
-  return NextResponse.json(experiences);
+  return NextResponse.json(await listExperiences());
 }
 
 export async function POST(request) {
@@ -23,18 +18,14 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Perusahaan wajib diisi' }, { status: 400 });
   }
 
-  const stmt = db.prepare(
-    `INSERT INTO experiences (company, title, period, location, tags, sort_order)
-     VALUES (?, ?, ?, ?, ?, ?)`
-  );
-  const info = stmt.run(
+  const id = await createExperience({
     company,
-    title || '',
-    period || '',
-    location || '',
-    JSON.stringify(tags || []),
-    Number(sort_order) || 0
-  );
+    title: title || '',
+    period: period || '',
+    location: location || '',
+    tags: tags || [],
+    sort_order: Number(sort_order) || 0,
+  });
 
-  return NextResponse.json({ id: info.lastInsertRowid });
+  return NextResponse.json({ id });
 }

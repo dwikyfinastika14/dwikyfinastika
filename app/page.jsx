@@ -1,4 +1,4 @@
-import db from '@/lib/db';
+import { getProfile, listExperiences, listProjects } from '@/lib/db';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
@@ -8,17 +8,12 @@ import Contact from '@/components/Contact';
 
 export const dynamic = 'force-dynamic';
 
-export default function HomePage() {
-  const profileRow = db.prepare('SELECT * FROM profile WHERE id = 1').get();
-  const profile = { ...profileRow, skills: JSON.parse(profileRow.skills || '[]') };
-
-  const projectRows = db.prepare('SELECT * FROM projects ORDER BY sort_order ASC, id ASC').all();
-  const projects = projectRows.map((p) => ({ ...p, tags: JSON.parse(p.tags || '[]') }));
-  const experienceRows = db.prepare('SELECT * FROM experiences ORDER BY sort_order ASC, id ASC').all();
-  const experiences = experienceRows.map((experience) => ({
-    ...experience,
-    tags: JSON.parse(experience.tags || '[]'),
-  }));
+export default async function HomePage() {
+  const [profile, projects, experiences] = await Promise.all([
+    getProfile(),
+    listProjects(),
+    listExperiences(),
+  ]);
 
   return (
     <main>

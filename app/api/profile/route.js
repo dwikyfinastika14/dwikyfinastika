@@ -1,18 +1,18 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import { getProfile, updateProfile } from '@/lib/db';
 import { isAuthenticated } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const profile = db.prepare('SELECT * FROM profile WHERE id = 1').get();
+  const profile = await getProfile();
   const firstName = profile.name?.split(' ')[0] || 'Nama';
   const role = profile.role?.toLowerCase() || 'digital development';
   const yearsExperience = profile.years_experience || 1;
 
   return NextResponse.json({
     ...profile,
-    skills: JSON.parse(profile.skills || '[]'),
+    skills: profile.skills || [],
     hero_title: profile.hero_title || `I'm ${firstName}, crafting my journey in ${role}.`,
     hero_intro:
       profile.hero_intro ||
@@ -42,62 +42,7 @@ export async function PUT(request) {
   }
 
   const body = await request.json();
-  const {
-    name,
-    role,
-    bio,
-    skills,
-    email,
-    github,
-    linkedin,
-    instagram,
-    location,
-    years_experience,
-    hero_title,
-    hero_intro,
-    availability_text,
-    primary_cta_label,
-    primary_cta_href,
-    secondary_cta_label,
-    secondary_cta_href,
-    about_heading,
-    about_note_1,
-    about_note_2,
-    experience_summary,
-    contact_heading,
-  } = body;
-
-  db.prepare(
-    `UPDATE profile
-     SET name = ?, role = ?, bio = ?, skills = ?, email = ?, github = ?, linkedin = ?, instagram = ?,
-         location = ?, years_experience = ?, hero_title = ?, hero_intro = ?, availability_text = ?,
-         primary_cta_label = ?, primary_cta_href = ?, secondary_cta_label = ?, secondary_cta_href = ?,
-         about_heading = ?, about_note_1 = ?, about_note_2 = ?, experience_summary = ?, contact_heading = ?
-     WHERE id = 1`
-  ).run(
-    name,
-    role,
-    bio,
-    JSON.stringify(skills || []),
-    email,
-    github,
-    linkedin,
-    instagram,
-    location,
-    Number(years_experience) || 0,
-    hero_title || '',
-    hero_intro || '',
-    availability_text || '',
-    primary_cta_label || '',
-    primary_cta_href || '',
-    secondary_cta_label || '',
-    secondary_cta_href || '',
-    about_heading || '',
-    about_note_1 || '',
-    about_note_2 || '',
-    experience_summary || '',
-    contact_heading || ''
-  );
+  await updateProfile(body);
 
   return NextResponse.json({ ok: true });
 }

@@ -1,4 +1,4 @@
-# Portfolio + CMS (Next.js + SQLite)
+# Portfolio + CMS (Next.js + Neon Postgres)
 
 Portfolio pribadi dengan halaman admin bawaan (CMS sederhana) untuk menambah, mengedit,
 dan menghapus proyek tanpa perlu menyentuh kode.
@@ -30,8 +30,8 @@ halaman admin setelah project jalan (lihat langkah di bawah).
    - Situs publik: http://localhost:3000
    - Admin/CMS: http://localhost:3000/admin (login pakai `ADMIN_PASSWORD` dari `.env`)
 
-Database SQLite (`data/portfolio.db`) otomatis dibuat saat pertama kali dijalankan,
-lengkap dengan data placeholder (1 profil + 3 contoh proyek).
+Database Postgres/Neon otomatis membuat tabel saat pertama kali halaman atau API
+dibuka. Pastikan `.env` berisi `DATABASE_URL`.
 
 ## Cara pakai CMS
 
@@ -41,13 +41,15 @@ lengkap dengan data placeholder (1 profil + 3 contoh proyek).
 - **Edit profil**: menu "Profil" di admin — nama, peran, bio, skill, email, GitHub,
   LinkedIn, Instagram, lokasi, tahun pengalaman. Semua langsung tampil di halaman utama
   setelah disimpan.
-- Gambar yang diunggah disimpan di `public/uploads/`.
+- Di production, gambar yang diunggah disimpan di Vercel Blob. Pastikan env
+  `BLOB_READ_WRITE_TOKEN` tersedia. Saat development lokal tanpa token Blob,
+  gambar fallback ke `public/uploads/`.
 
 ## Struktur project
 
 ```
 app/
-  page.jsx                     → halaman utama (server component, ambil data dari SQLite)
+  page.jsx                     → halaman utama (server component, ambil data dari Neon/Postgres)
   layout.jsx                   → layout root + font
   globals.css                  → semua styling (tema "lembar gambar teknik / blueprint")
   admin/
@@ -62,12 +64,11 @@ app/
     auth/login, auth/logout    → set/hapus cookie sesi admin
     projects, projects/[id]    → CRUD proyek (POST/PUT/DELETE butuh login)
     profile                    → get/update profil (PUT butuh login)
-    upload                     → upload gambar ke public/uploads
+    upload                     → upload gambar ke Vercel Blob
 components/                    → Hero, About, Skills, Projects, Contact, ProjectForm, dll
 lib/
-  db.js                        → koneksi SQLite + auto-migrate + seed data placeholder
+  db.js                        → koneksi Neon/Postgres + auto-create table
   auth.js                      → cek status login dari cookie
-data/portfolio.db              → database SQLite (dibuat otomatis, jangan di-commit ke git)
 ```
 
 ## Tentang desain

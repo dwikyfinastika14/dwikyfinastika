@@ -1,8 +1,15 @@
 import './globals.css';
-import db from '@/lib/db';
+import { getProfile } from '@/lib/db';
 
 export async function generateMetadata() {
-  const profile = db.prepare('SELECT name, role, bio FROM profile WHERE id = 1').get();
+  let profile = null;
+
+  try {
+    profile = await getProfile();
+  } catch {
+    profile = null;
+  }
+
   return {
     title: `${profile?.name || 'Portfolio'} - ${profile?.role || ''}`.trim(),
     description: profile?.bio || 'Portfolio pribadi - dibuat dengan Next.js.',

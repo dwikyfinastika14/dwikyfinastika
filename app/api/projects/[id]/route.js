@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import { deleteProject, getProject, updateProject } from '@/lib/db';
 import { isAuthenticated } from '@/lib/auth';
-import fs from 'fs';
-import path from 'path';
+import { del } from '@vercel/blob';
 
 export async function GET(request, { params }) {
-  const project = db.prepare('SELECT * FROM projects WHERE id = ?').get(params.id);
+  const project = await getProject(params.id);
   if (!project) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  return NextResponse.json({ ...project, tags: JSON.parse(project.tags || '[]') });
+  return NextResponse.json(project);
 }
 
 export async function PUT(request, { params }) {
@@ -17,21 +16,16 @@ export async function PUT(request, { params }) {
   const body = await request.json();
   const { title, description, image, tags, link, repo, year, sort_order } = body;
 
-  db.prepare(
-    `UPDATE projects
-     SET title = ?, description = ?, image = ?, tags = ?, link = ?, repo = ?, year = ?, sort_order = ?
-     WHERE id = ?`
-  ).run(
+  await updateProject(params.id, {
     title,
-    description || '',
-    image || '',
-    JSON.stringify(tags || []),
-    link || '',
-    repo || '',
-    year || '',
-    Number(sort_order) || 0,
-    params.id
-  );
+    description: description || '',
+    image: image || '',
+    tags: tags || [],
+    link: link || '',
+    repo: repo || '',
+    year: year || '',
+    sort_order: Number(sort_order) || 0,
+  });
   return NextResponse.json({ ok: true });
 }
 
@@ -39,17 +33,14 @@ export async function DELETE(request, { params }) {
   if (!isAuthenticated()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  const project = db.prepare('SELECT * FROM projects WHERE id = ?').get(params.id);
-  if (project?.image) {
-    const filePath = path.join(process.cwd(), 'public', project.image);
-    if (fs.existsSync(filePath)) {
-      try {
-        fs.unlinkSync(filePath);
-      } catch (e) {
-        // ignore file cleanup errors
-      }
+  const project = await getProject(params.id);
+  if (project?.image?.startsWith('http')) {
+    try {
+      await del(project.image);
+    } catch (e) {
+      // Ignore file cleanup errors so deleting database records still works.
     }
   }
-  db.prepare('DELETE FROM projects WHERE id = ?').run(params.id);
+  await deleteProject(params.id);
   return NextResponse.json({ ok: true });
 }

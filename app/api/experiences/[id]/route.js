@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import { deleteExperience, getExperience, updateExperience } from '@/lib/db';
 import { isAuthenticated } from '@/lib/auth';
 
 export async function GET(request, { params }) {
-  const experience = db.prepare('SELECT * FROM experiences WHERE id = ?').get(params.id);
+  const experience = await getExperience(params.id);
   if (!experience) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  return NextResponse.json({ ...experience, tags: JSON.parse(experience.tags || '[]') });
+  return NextResponse.json(experience);
 }
 
 export async function PUT(request, { params }) {
@@ -20,19 +20,14 @@ export async function PUT(request, { params }) {
     return NextResponse.json({ error: 'Perusahaan wajib diisi' }, { status: 400 });
   }
 
-  db.prepare(
-    `UPDATE experiences
-     SET company = ?, title = ?, period = ?, location = ?, tags = ?, sort_order = ?
-     WHERE id = ?`
-  ).run(
+  await updateExperience(params.id, {
     company,
-    title || '',
-    period || '',
-    location || '',
-    JSON.stringify(tags || []),
-    Number(sort_order) || 0,
-    params.id
-  );
+    title: title || '',
+    period: period || '',
+    location: location || '',
+    tags: tags || [],
+    sort_order: Number(sort_order) || 0,
+  });
 
   return NextResponse.json({ ok: true });
 }
@@ -42,6 +37,6 @@ export async function DELETE(request, { params }) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  db.prepare('DELETE FROM experiences WHERE id = ?').run(params.id);
+  await deleteExperience(params.id);
   return NextResponse.json({ ok: true });
 }
