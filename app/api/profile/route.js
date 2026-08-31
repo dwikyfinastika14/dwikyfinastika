@@ -43,9 +43,17 @@ export async function PUT(request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const body = await request.json();
-  await updateProfile(body);
-  revalidatePath('/');
+  try {
+    const body = await request.json();
+    await updateProfile(body);
+    revalidatePath('/');
 
-  return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    return NextResponse.json(
+      { error: error.message || 'Gagal menyimpan profil' },
+      { status: 500 }
+    );
+  }
 }

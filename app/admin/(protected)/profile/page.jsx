@@ -9,7 +9,6 @@ const defaults = {
   primary_cta_label: '',
   primary_cta_href: '',
   secondary_cta_label: '',
-  secondary_cta_label: '',
   secondary_cta_href: '',
   about_heading: '',
   about_notes: ['', ''],
@@ -76,6 +75,7 @@ export default function AdminProfilePage() {
         .split(',')
         .map((skill) => skill.trim())
         .filter(Boolean),
+      about_notes: (form.about_notes || []).filter(note => note.trim() !== ''),
       years_experience: Number(form.years_experience) || 0,
     };
     const res = await fetch('/api/profile', {
@@ -114,8 +114,8 @@ export default function AdminProfilePage() {
           </label>
           <label>
             Upload Gambar Profile
-            <input 
-              type="file" 
+            <input
+              type="file"
               accept="image/jpeg,image/png,image/webp,image/gif"
               onChange={handleImageUpload}
               disabled={uploading}
@@ -126,16 +126,16 @@ export default function AdminProfilePage() {
           {form.image_url && (
             <div style={{ marginBottom: '1rem' }}>
               <p style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem' }}>Preview Gambar:</p>
-              <img 
-                src={form.image_url} 
-                alt="Profile preview" 
-                style={{ 
-                  width: '100px', 
-                  height: '100px', 
-                  borderRadius: '50%', 
+              <img
+                src={form.image_url}
+                alt="Profile preview"
+                style={{
+                  width: '100px',
+                  height: '100px',
+                  borderRadius: '50%',
                   objectFit: 'cover',
                   border: '2px solid #ccc'
-                }} 
+                }}
               />
             </div>
           )}
