@@ -27,12 +27,10 @@ export async function GET() {
     secondary_cta_label: profile.secondary_cta_label || 'Download CV',
     secondary_cta_href: profile.secondary_cta_href || '#contact',
     about_heading: profile.about_heading || 'Core strengths and expertise',
-    about_note_1:
-      profile.about_note_1 ||
+    about_notes: profile.about_notes || [
       'Building thoughtful digital products with a focus on clarity, performance, and useful details.',
-    about_note_2:
-      profile.about_note_2 ||
       'Combining strong technical foundations with a practical, human approach to every project.',
+    ],
     experience_summary:
       profile.experience_summary ||
       `Over the past ${yearsExperience}+ years, I have worked across different projects and digital products.`,

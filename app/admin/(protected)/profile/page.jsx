@@ -9,10 +9,10 @@ const defaults = {
   primary_cta_label: '',
   primary_cta_href: '',
   secondary_cta_label: '',
+  secondary_cta_label: '',
   secondary_cta_href: '',
   about_heading: '',
-  about_note_1: '',
-  about_note_2: '',
+  about_notes: ['', ''],
   experience_summary: '',
   contact_heading: '',
 };
@@ -166,14 +166,48 @@ export default function AdminProfilePage() {
             Heading Kekuatan
             <input value={form.about_heading || ''} onChange={(e) => update('about_heading', e.target.value)} />
           </label>
-          <label>
-            Catatan About 1
-            <textarea value={form.about_note_1 || ''} onChange={(e) => update('about_note_1', e.target.value)} rows={3} />
-          </label>
-          <label>
-            Catatan About 2
-            <textarea value={form.about_note_2 || ''} onChange={(e) => update('about_note_2', e.target.value)} rows={3} />
-          </label>
+          <div style={{ marginBottom: '1rem' }}>
+            <div style={{ marginBottom: '0.5rem', fontWeight: 600 }}>Catatan Kekuatan (bisa lebih dari 2):</div>
+            {(form.about_notes || []).map((note, index) => (
+              <div key={index} style={{ marginBottom: '1rem', padding: '1rem', border: '1px solid #ccc', borderRadius: '4px' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem' }}>
+                  Catatan {index + 1}
+                  <textarea
+                    value={note || ''}
+                    onChange={(e) => {
+                      const newNotes = [...(form.about_notes || [])];
+                      newNotes[index] = e.target.value;
+                      update('about_notes', newNotes);
+                    }}
+                    rows={3}
+                    style={{ marginTop: '0.25rem' }}
+                  />
+                </label>
+                {form.about_notes.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newNotes = form.about_notes.filter((_, i) => i !== index);
+                      update('about_notes', newNotes);
+                    }}
+                    style={{ padding: '0.5rem 1rem', backgroundColor: '#dc2626', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                  >
+                    Hapus Catatan
+                  </button>
+                )}
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => {
+                const newNotes = [...(form.about_notes || []), ''];
+                update('about_notes', newNotes);
+              }}
+              style={{ padding: '0.5rem 1rem', backgroundColor: '#10b981', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+            >
+              + Tambah Catatan
+            </button>
+          </div>
         </fieldset>
 
         <fieldset className="admin-fieldset">
