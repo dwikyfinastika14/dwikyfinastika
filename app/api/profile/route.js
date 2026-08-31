@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server';
 import { getProfile, updateProfile } from '@/lib/db';
 import { isAuthenticated } from '@/lib/auth';
+import { revalidatePath, unstable_noStore as noStore } from 'next/cache';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
+  noStore();
+
   const profile = await getProfile();
   const firstName = profile.name?.split(' ')[0] || 'Nama';
   const role = profile.role?.toLowerCase() || 'digital development';
@@ -43,6 +47,7 @@ export async function PUT(request) {
 
   const body = await request.json();
   await updateProfile(body);
+  revalidatePath('/');
 
   return NextResponse.json({ ok: true });
 }

@@ -1,8 +1,13 @@
 import { NextResponse } from 'next/server';
 import { createExperience, listExperiences } from '@/lib/db';
 import { isAuthenticated } from '@/lib/auth';
+import { revalidatePath, unstable_noStore as noStore } from 'next/cache';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
+  noStore();
   return NextResponse.json(await listExperiences());
 }
 
@@ -26,6 +31,7 @@ export async function POST(request) {
     tags: tags || [],
     sort_order: Number(sort_order) || 0,
   });
+  revalidatePath('/');
 
   return NextResponse.json({ id });
 }
