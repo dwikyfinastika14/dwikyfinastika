@@ -81,6 +81,10 @@ export default function AdminProfilePage() {
             <textarea value={form.bio || ''} onChange={(e) => update('bio', e.target.value)} rows={4} />
           </label>
           <label>
+            URL Gambar Profile
+            <input value={form.image_url || ''} onChange={(e) => update('image_url', e.target.value)} placeholder="https://example.com/profile.jpg atau /assets/img/profile.jpg" />
+          </label>
+          <label>
             Skill (pisahkan dengan koma)
             <input value={form.skills || ''} onChange={(e) => update('skills', e.target.value)} />
           </label>
